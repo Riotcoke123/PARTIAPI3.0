@@ -14,7 +14,7 @@
   <p>All requests require a Bearer Token provided in the Authorization header.</p>
   <pre style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
 <strong>Header:</strong> Authorization
-<strong>Value:</strong> Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9... (truncated)</pre>
+<strong>Value:</strong> Bearer </pre>
 
   <hr />
 
