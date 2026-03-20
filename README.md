@@ -13,7 +13,7 @@
   <h2 style="color: #2980b9;">1. Authentication</h2>
   <p>All requests must include the following header:</p>
   <div style="background-color: #f8f9fa; padding: 15px; border-left: 5px solid #2980b9; font-family: monospace; border-radius: 4px;">
-    <strong>Authorization:</strong> Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9...
+    <strong>Authorization:</strong> Bearer ...............................
   </div>
 
   <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;" />
