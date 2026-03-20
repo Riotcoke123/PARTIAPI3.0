@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: auto; padding: 20px; background-color: #fcfcfc;">
+
 
   <h1 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Parti Live Stream API Documentation</h1>
 
