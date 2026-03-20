@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<img width="50" height="50" alt="parti_logo" src="https://github.com/user-attachments/assets/cdb1da0f-598d-4f94-af35-69551625e191" />
+<img width="250" height="200" alt="parti_logo" src="https://github.com/user-attachments/assets/cdb1da0f-598d-4f94-af35-69551625e191" />
 
 
   <h1 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Parti Live Stream API Documentation</h1>
