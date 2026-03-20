@@ -1,76 +1,88 @@
 <!DOCTYPE html>
 <html>
+<body style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: auto; padding: 20px; background-color: #fcfcfc;">
 
-
-  <h1 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">Parti Live Stream API Documentation</h1>
+  <h1 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Parti Live Stream API Documentation</h1>
 
   <p>
-    Comprehensive guide for interacting with the <strong>Parti.com</strong> livestream and moderation management system.
+    This API documentation provides the necessary endpoints for interacting with the <strong>Parti.com</strong> livestreaming platform, covering stream discovery, detailed channel metadata, and moderation.
   </p>
 
   <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;" />
 
   <h2 style="color: #2980b9;">1. Authentication</h2>
-  <p>All requests must include the following header:</p>
-  <div style="background-color: #f8f9fa; padding: 15px; border-left: 5px solid #2980b9; font-family: monospace; border-radius: 4px;">
-    <strong>Authorization:</strong> Bearer ...............................
+  <p>Include the Bearer token in the header of every request. (Token masked for security):</p>
+  <div style="background-color: #2d3436; color: #dfe6e9; padding: 15px; border-radius: 4px; font-family: monospace;">
+    <strong>Authorization:</strong> Bearer [REDACTED_ACCESS_TOKEN]
   </div>
 
   <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;" />
 
   <h2 style="color: #2980b9;">2. Livestream Endpoints</h2>
 
-  <h3 style="background: #f1f1f1; padding: 8px; border-radius: 4px;">GET /live</h3>
-  <p>Fetch active livestream channel information with pagination support.</p>
-  <pre style="background: #fdf6e3; padding: 10px; border: 1px solid #ddd;">GET https://prod-api.parti.com/parti_v2/profile/get_livestream_channel_info/live?limit=30&offset=0</pre>
+  <h3 style="background: #e1e8ed; padding: 8px; border-radius: 4px; border-left: 4px solid #2980b9;">GET /live</h3>
+  <p>Fetch a list of all active livestream channels.</p>
+  <pre style="background: #fdf6e3; padding: 10px; border: 1px solid #ddd; overflow-x: auto;">GET https://prod-api.parti.com/parti_v2/profile/get_livestream_channel_info/live?limit=30&offset=0</pre>
 
-  <h3 style="background: #f1f1f1; padding: 8px; border-radius: 4px;">GET /moderators/{id}</h3>
-  <p>Retrieve the list of moderators assigned to a specific streamer's channel.</p>
-  <pre style="background: #fdf6e3; padding: 10px; border: 1px solid #ddd;">GET https://prod-api.parti.com/parti_v2/profile/livestream/moderators/{id}</pre>
-  
-  <p><strong>Example:</strong> Fetching moderators for <code>miltserr</code> (ID: 667897):</p>
-  <code style="display: block; background: #eee; padding: 5px; margin-bottom: 10px;">https://prod-api.parti.com/parti_v2/profile/livestream/moderators/667897</code>
+  <h3 style="background: #e1e8ed; padding: 8px; border-radius: 4px; border-left: 4px solid #2980b9;">GET /get_livestream_channel_info/{id}</h3>
+  <p>Retrieve detailed metadata for a specific channel, including RTMP ingest endpoints and event descriptions.</p>
+  <pre style="background: #fdf6e3; padding: 10px; border: 1px solid #ddd; overflow-x: auto;">GET https://prod-api.parti.com/parti_v2/profile/get_livestream_channel_info/667897</pre>
+
+  <h3 style="background: #e1e8ed; padding: 8px; border-radius: 4px; border-left: 4px solid #2980b9;">GET /moderators/{id}</h3>
+  <p>Fetch the list of moderators for the specified channel ID.</p>
+  <pre style="background: #fdf6e3; padding: 10px; border: 1px solid #ddd; overflow-x: auto;">GET https://prod-api.parti.com/parti_v2/profile/livestream/moderators/667897</pre>
 
   <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;" />
 
-  <h2 style="color: #2980b9;">3. Endpoint Specifications</h2>
+  <h2 style="color: #2980b9;">3. Data Example: Channel Info</h2>
+  <p>Response structure for a specific channel lookup:</p>
+  <div style="background: #272822; color: #a6e22e; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; overflow-x: auto;">
+    <pre style="margin: 0;">
+{
+  "status": "Public",
+  "is_moderator": false,
+  "channel_info": {
+    "channel": {
+      "user_id": 667897,
+      "ingest_endpoint": "rtmp://stream.parti.com:1935",
+      "playback_url": "https://media.parti.com/.../main.m3u8",
+      "is_live": true
+    },
+    "livestream_event_info": {
+      "event_name": "I'm Live on Parti",
+      "event_description": "Transmisión de los mejores videos musicales..."
+    }
+  },
+  "is_streaming_live_now": true
+}
+    </pre>
+  </div>
 
-  <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+  <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;" />
+
+  <h2 style="color: #2980b9;">4. Global Definitions</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 10px; background-color: white;">
     <thead>
       <tr style="background-color: #2980b9; color: white;">
-        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Parameter</th>
-        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Type</th>
+        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Key</th>
         <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td style="padding: 10px; border: 1px solid #ddd;"><code>id</code></td>
-        <td style="padding: 10px; border: 1px solid #ddd;">Path</td>
-        <td style="padding: 10px; border: 1px solid #ddd;">The <code>user_id</code> of the streamer.</td>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>ingest_endpoint</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">RTMP URL for streamers to push content.</td>
       </tr>
       <tr>
-        <td style="padding: 10px; border: 1px solid #ddd;"><code>limit</code></td>
-        <td style="padding: 10px; border: 1px solid #ddd;">Query</td>
-        <td style="padding: 10px; border: 1px solid #ddd;">Number of records to return (Default: 30).</td>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>playback_url</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">The HLS master playlist URL (.m3u8).</td>
       </tr>
       <tr>
-        <td style="padding: 10px; border: 1px solid #ddd;"><code>offset</code></td>
-        <td style="padding: 10px; border: 1px solid #ddd;">Query</td>
-        <td style="padding: 10px; border: 1px solid #ddd;">Pagination offset.</td>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>is_moderator</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Boolean indicating if the requester has mod privileges.</td>
       </tr>
     </tbody>
   </table>
-
-  <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;" />
-
-  <h2 style="color: #2980b9;">4. Response Structure</h2>
-  <div style="background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace;">
-    <pre>
-// GET /moderators/667897
-[] // Returns empty array if no moderators are assigned
-    </pre>
-  </div>
 
 </body>
 </html>
